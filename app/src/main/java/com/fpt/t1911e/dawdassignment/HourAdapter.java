@@ -42,7 +42,7 @@ public class HourAdapter extends RecyclerView.Adapter {
         HourHolder hh = (HourHolder) holder;
         Root root = listRoot.get(position);
         hh.tvTime.setText(convertTime(root.getDateTime()));
-        hh.tvTemper.setText(root.getTemperature().getValue()+"");
+        hh.tvTemper.setText(root.getTemperature().getValue()+"º");
         String url ="";
         if (root.getWeatherIcon() < 10){
             url = "https://developer.accuweather.com/sites/default/files/0" + root.getWeatherIcon() + "-s.png";
