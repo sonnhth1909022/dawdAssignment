@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/weather"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hà Nội"
+        android:id="@+id/tvCity"
+        android:textSize="60sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Có mưa"
+        android:id="@+id/tvStatus"
+        android:textStyle="italic"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="27"
+        android:id="@+id/tvTemper"
+        android:textStyle="bold"
+        android:textSize="80sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/teal_200"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rvHour"
+        android:layout_marginLeft="10dp">
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/teal_200"/>
+
+
+</LinearLayout>
