@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.fpt.t1911e.dawdassignment.daymodel.DailyForecasts;
 import com.fpt.t1911e.dawdassignment.hourmodel.Root;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -22,12 +24,17 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvTemper;
     private TextView tvStatus;
     private RecyclerView rvHour;
+    private RecyclerView rvDay;
+    private List<DailyForecasts> listDailyForecast;
+    private DayAdapter dayAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Get Hours function:
 
         tvTemper = (TextView) findViewById(R.id.tvTemper);
         tvStatus = (TextView) findViewById(R.id.tvStatus);
@@ -39,6 +46,18 @@ public class MainActivity extends AppCompatActivity {
         rvHour = (RecyclerView) findViewById(R.id.rvHour);
         rvHour.setLayoutManager(layoutManager);
 
+
+        //Get Days function:
+
+        getDays();
+
+        listDailyForecast = new ArrayList<>();
+        dayAdapter = new DayAdapter(MainActivity.this, listDailyForecast);
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+
+        rvDay = (RecyclerView) findViewById(R.id.rvDay);
+        rvDay.setLayoutManager(layoutManager1);
+        rvDay.setAdapter(dayAdapter);
 
     }
     private void getHours() {
@@ -65,6 +84,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Root>> call, Throwable t) {
 
+            }
+        });
+    }
+
+    private void getDays() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiManager.main_url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiManager service = retrofit.create(ApiManager.class);
+        service.getDay().enqueue(new Callback<List<DailyForecasts>>() {
+            @Override
+            public void onResponse(Call<List<DailyForecasts>> call, Response<List<DailyForecasts>> response) {
+                if (response.body() != null){
+                    listDailyForecast = response.body();
+                    dayAdapter.reloadData(listDailyForecast);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<DailyForecasts>> call, Throwable t) {
             }
         });
     }

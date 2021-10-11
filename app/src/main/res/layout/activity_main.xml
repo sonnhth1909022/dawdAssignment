@@ -47,13 +47,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rvHour"
-        android:layout_marginLeft="10dp">
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
     </androidx.recyclerview.widget.RecyclerView>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/teal_200"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rvDay"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp">
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </LinearLayout>
